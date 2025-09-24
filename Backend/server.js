@@ -50,7 +50,7 @@ app.post("/fire-alert", async (req, res) => {
 
     if (intensity === "high") {
       const call = await client.calls.create({
-        url: "https://5389ce489418.ngrok-free.app/voice",
+        url: "https://diasestermanagementsensor.onrender.com/voice",
         to: "+918270010891", 
         from: "+15342024238"
       });

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fire Alert System</title>
+</head>
+<body>
+  <h1>Fire Alert System</h1>
+
+  <button id="low">Low Intensity Fire</button>
+  <button id="high">High Intensity Fire</button>
+
+  <p id="status"></p>
+
+  <script>
+    const lowBtn = document.getElementById('low');
+    const highBtn = document.getElementById('high');
+    const status = document.getElementById('status');
+
+    const backendURL = "http://localhost:3000/fire-alert"; // replace with ngrok URL if testing remotely
+
+    lowBtn.addEventListener('click', async () => {
+      status.textContent = "Sending WhatsApp alert...";
+      try {
+        const res = await fetch(backendURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ school: "Gandhi Engineering collage", intensity: "low" })
+        });
+        const text = await res.text();
+        status.textContent = text;
+      } catch (err) {
+        status.textContent = "Error: " + err.message;
+      }
+    });
+
+    highBtn.addEventListener('click', async () => {
+      status.textContent = "Initiating voice call...";
+      try {
+        const res = await fetch(backendURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ school: "Gandhi Engineering Collage", intensity: "high" })
+        });
+        const text = await res.text();
+        status.textContent = text;
+      } catch (err) {
+        status.textContent = "Error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<Response>
+  <Say voice="alice" language="en-US">
+    High intensity fire detected at XYZ College. Please respond immediately.
+  </Say>
+</Response>
